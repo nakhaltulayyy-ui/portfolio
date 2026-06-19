@@ -1,279 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Louay Mazkour | Portfolio</title>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Louay Mazkour |Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:-apple-system, sans-serif;
-}
-
-body{
-background:#050505;
-color:#f5f0e8;
-overflow-x:hidden;
-}
-
-/* BACKGROUND */
-.bg{
-position:fixed;
-inset:0;
-background:
-radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 40%),
-radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05), transparent 45%);
-z-index:-1;
-}
-
-/* NAV */
-nav{
-position:fixed;
-top:0;
-width:100%;
-display:flex;
-justify-content:center;
-gap:12px;
-padding:12px;
-z-index:100;
-backdrop-filter:blur(10px);
-}
-
-nav button{
-background:transparent;
-border:1px solid rgba(255,255,255,0.2);
-color:white;
-padding:8px 12px;
-border-radius:10px;
-cursor:pointer;
-}
-
-/* SECTIONS */
-section{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:60px 20px;
-text-align:center;
-}
-
-/* HERO */
-.hero h1{
-font-size:10vw;
-line-height:0.9;
-}
-
-/* CARD */
-.card{
-width:min(900px,95%);
-border-radius:25px;
-overflow:hidden;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.1);
-margin-top:20px;
-cursor:pointer;
-transition:0.4s;
-}
-
-.card img, .card video{
-width:100%;
-height:420px;
-object-fit:cover;
-display:block;
-transition:0.5s;
-}
-
-.card:hover img{
-transform:scale(1.05);
-filter:brightness(1.1);
-}
-
-.card h2{
-position:absolute;
-margin-top:-70px;
-margin-left:20px;
-font-size:40px;
-}
-
-/* TEXT AREA */
-.content{
-padding:20px;
-line-height:1.6;
-font-size:15px;
-}
-
-/* ABOUT EXPAND */
-.extra{
-max-height:0;
-overflow:hidden;
-transition:0.6s ease;
-}
-
-.card.open .extra{
-max-height:400px;
-}
-
-/* BUTTONS */
-.btn{
-display:inline-block;
-margin:8px;
-padding:12px 16px;
-border-radius:12px;
-border:1px solid rgba(255,255,255,0.2);
-color:white;
-text-decoration:none;
-}
-
-/* INPUT */
-input[type="file"]{
-margin-top:10px;
-color:white;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:#050505;color:#fff;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-1;background:
+radial-gradient(circle at 20% 20%,rgba(255,255,255,.09),transparent 35%),
+radial-gradient(circle at 80% 60%,rgba(255,255,255,.05),transparent 40%)}
+nav{position:fixed;top:0;width:100%;display:flex;justify-content:center;gap:10px;padding:15px;background:rgba(0,0,0,.35);backdrop-filter:blur(12px);z-index:999}
+nav a{text-decoration:none;color:white;padding:10px 15px;border-radius:14px;border:1px solid rgba(255,255,255,.12)}
+section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:90px 20px;text-align:center}
+.hero h1{font-size:clamp(4rem,12vw,9rem);line-height:.85}
+.hero-sub{margin-top:20px;font-size:1.2rem;letter-spacing:2px}
+.tagline{margin-top:15px;opacity:.8}
+.stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:40px}
+.stat{padding:20px;border:1px solid rgba(255,255,255,.1);border-radius:20px;background:rgba(255,255,255,.03)}
+.card{width:min(1100px,92%);position:relative;overflow:hidden;border-radius:30px;cursor:pointer;border:1px solid rgba(255,255,255,.1);transition:.4s}
+.card:hover{transform:translateY(-8px)}
+.card img{width:100%;height:550px;object-fit:cover}
+.overlay{position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+.title{position:absolute;bottom:30px;left:30px;font-size:2.5rem;font-weight:700}
+.hint{position:absolute;top:25px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.12);padding:12px 20px;border-radius:30px;animation:pulse 1.5s infinite}
+@keyframes pulse{50%{transform:translateX(-50%) scale(1.08)}}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;justify-content:center;align-items:center;padding:20px;z-index:1000}
+.modal.active{display:flex}
+.box{width:min(900px,95%);background:#101010;border-radius:28px;padding:35px;text-align:center;border:1px solid rgba(255,255,255,.12);max-height:90vh;overflow:auto}
+.box h2{margin-bottom:15px}
+.box p{line-height:1.8;max-width:700px;margin:auto}
+.box ul{text-align:left;max-width:600px;margin:20px auto}
+.box li{margin:8px 0}
+.btn{display:inline-block;margin:10px;padding:14px 22px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:white;text-decoration:none}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;width:min(1000px,92%)}
+.contact-card{padding:25px;border-radius:25px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.contact-card a{color:white;text-decoration:none}
+video{width:100%;border-radius:20px;margin-top:20px}
 </style>
 </head>
-
 <body>
-
 <div class="bg"></div>
 
 <nav>
-<button onclick="go('about')">About</button>
-<button onclick="go('bar')">Bar</button>
-<button onclick="go('events')">Events</button>
-<button onclick="go('commercial')">Commercial</button>
-<button onclick="go('contact')">Contact</button>
+<a href="#profile">Profile</a>
+<a href="#hospitality">Hospitality</a>
+<a href="#events">Events</a>
+<a href="#commercial">Media</a>
+<a href="#contact">Contact</a>
 </nav>
 
-<!-- HERO -->
-<section>
-<h1 class="hero">LOUAY<br>MAZKOUR</h1>
-<p>Bar Manager • Photographer • Creative Consultant</p>
-</section>
+<section class="hero">
+<h1>LOUAY<br>MAZKOUR</h1>
+<div class="hero-sub">BAR CONSULTANT • VIDEOGRAPHER • PHOTOGRAPHER</div>
+<div class="hero-sub">Founder of Digital.c.co</div>
+<div class="tagline">Crafting Experiences. Capturing Stories. Building Brands.</div>
 
-<!-- ABOUT -->
-<section id="about">
-<div class="card" onclick="toggle(this)">
-<img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1400">
-
-<h2>ABOUT</h2>
-
-<div class="content">
-<p>
-Lebanese bar manager with 10+ years experience in hospitality and mixology, 
-plus 5 years as a professional photographer.
-</p>
-
-<div class="extra">
-<p>
-He also works in branding and creative direction through his project <b>digital.c.co</b>.<br><br>
-He builds bar concepts, trains staff, designs drink menus, manages openings, 
-and captures full visual identity for bars and brands.
-</p>
-</div>
-
-</div>
+<div class="stats">
+<div class="stat"><h2>10+</h2><p>Years Hospitality</p></div>
+<div class="stat"><h2>5+</h2><p>Years Media</p></div>
+<div class="stat"><h2>100+</h2><p>Projects</p></div>
 </div>
 </section>
 
-<!-- BAR -->
-<section id="bar">
-<div class="card">
-<img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1400">
-<h2>BAR CONSULTANCY</h2>
-
-<div class="content">
-<p>
-High-end bar consultancy including concept creation, drink design, staff training, and full bar openings.
-</p>
-
-<div class="extra">
-<p>
-He creates signature drinks, builds bar workflow systems, trains teams, and produces drink photography & video content for marketing.
-</p>
-</div>
-
-</div>
+<section id="profile">
+<div class="card" onclick="openModal('about')">
+<div class="hint">CLICK TO DISCOVER</div>
+<img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1600">
+<div class="overlay"></div>
+<div class="title">PROFILE</div>
 </div>
 </section>
 
-<!-- EVENTS -->
+<section id="hospitality">
+<div class="card" onclick="openModal('bar')">
+<div class="hint">CLICK TO DISCOVER</div>
+<img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1600">
+<div class="overlay"></div>
+<div class="title">HOSPITALITY CONSULTANCY</div>
+</div>
+</section>
+
 <section id="events">
-<div class="card">
-<img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1400">
-<h2>EVENTS</h2>
-
-<div class="content">
-<p>
-Full event coverage for weddings, nightlife, corporate, and private experiences.
-</p>
-
-<div class="extra">
-<p>
-Photography + creative direction for all types of events, capturing atmosphere, emotion, and storytelling moments.
-</p>
-</div>
-
-</div>
+<div class="card" onclick="openModal('events')">
+<div class="hint">CLICK TO DISCOVER</div>
+<img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600">
+<div class="overlay"></div>
+<div class="title">EVENT COVERAGE</div>
 </div>
 </section>
 
-<!-- COMMERCIAL -->
 <section id="commercial">
-<div class="card">
+<div class="card" onclick="openModal('commercial')">
+<div class="hint">CLICK TO DISCOVER</div>
+<img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1600">
+<div class="overlay"></div>
+<div class="title">COMMERCIAL MEDIA</div>
+</div>
+</section>
+
+<section id="contact">
+<h1>LET'S CREATE SOMETHING EXCEPTIONAL</h1>
+<br>
+<div class="contact-grid">
+<div class="contact-card"><h3>📞 CALL</h3><br><a href="tel:+96171456396">+961 71 456 396</a></div>
+<div class="contact-card"><h3>📸 INSTAGRAM</h3><br><a href="https://www.instagram.com/louaymazkour?igsh=dDgxNWI6YWU5ZHdx">View Profile</a></div>
+<div class="contact-card"><h3>✉️ EMAIL</h3><br><a href="mailto:louaymazkour@outlook.com">louaymazkour@outlook.com</a></div>
+<div class="contact-card"><h3>📄 DOWNLOAD CV</h3><br><a href="cv.pdf">Download CV</a></div>
+</div>
+</section>
+
+<div class="modal" id="modal"><div class="box" id="box"></div></div>
+
+<script>
+const content={
+about:`
+<h2>PROFILE</h2>
+<p>With over 10 years of experience in hospitality and 5 years in photography and videography, Louay Mazkour combines operational expertise with creative storytelling. As a bar consultant, photographer and videographer, he helps businesses create memorable experiences and powerful visual identities.</p>
+<br>
+<h2>DIGITAL.C.CO</h2>
+<p>A creative media and branding project founded by Louay Mazkour, focused on visual storytelling, content creation, photography, videography and brand development.</p>
+`,
+bar:`
+<h2>HOSPITALITY CONSULTANCY</h2>
+<p>Creating memorable guest experiences through strategy, creativity and operational excellence.</p>
+<ul>
+<li>Bar Concept Development</li>
+<li>Signature Cocktail Creation</li>
+<li>Staff Recruitment & Training</li>
+<li>Opening & Launch Support</li>
+<li>Cost Control & Optimization</li>
+<li>Photography & Videography For Venues</li>
+<li>Social Media Content Creation</li>
+</ul>
+
+`,
+events:`
+<h2>ANY KIND OF EVENT</h2>
+<p>From weddings and corporate events to nightlife, concerts, festivals and private celebrations, every moment is captured with creativity and precision.</p>
+<ul>
+<li>Weddings</li>
+<li>Corporate Events</li>
+<li>Festivals</li>
+<li>Concerts</li>
+<li>Private Parties</li>
+<li>Launch Events</li>
+</ul>
 <video controls>
 <source src="https://www.w3schools.com/html/mov_bbb.mp4">
 </video>
-
-<h2>COMMERCIAL</h2>
-
-<div class="content">
-<p>
-Commercial shoots for brands, drinks, and lifestyle campaigns.
-</p>
-
-<div class="extra">
-<p>
-High-end visual storytelling for bars, products, and advertising campaigns.
-</p>
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-<h2>CONTACT</h2>
-
-<div>
-<a class="btn" href="tel:+96171456396">CALL</a>
-<a class="btn" href="https://instagram.com/" target="_blank">INSTAGRAM</a>
-<a class="btn" href="cv.pdf" download>DOWNLOAD CV</a>
-</div>
-
-<br>
-
-<p>Upload CV (optional)</p>
-<input type="file" accept=".pdf"/>
-</section>
-
-<script>
-
-function go(id){
-document.getElementById(id).scrollIntoView({behavior:"smooth"});
+`,
+commercial:`
+<h2>COMMERCIAL MEDIA</h2>
+<p>Professional visual content designed for bars, restaurants, cafés, hotels, stores and emerging brands.</p>
+<ul>
+<li>Brand Videos</li>
+<li>Product Photography</li>
+<li>Product Videography</li>
+<li>Social Media Content</li>
+<li>New Restaurants & Bars</li>
+<li>Hotels & Retail Stores</li>
+</ul>
+<video controls>
+<source src="https://www.w3schools.com/html/movie.mp4">
+</video>
+`
+};
+function openModal(key){
+document.getElementById('modal').classList.add('active');
+document.getElementById('box').innerHTML=content[key];
 }
-
-function toggle(el){
-el.classList.toggle("open");
+document.getElementById('modal').onclick=(e)=>{
+if(e.target.id==='modal')document.getElementById('modal').classList.remove('active');
 }
-
 </script>
-
 </body>
 </html>
