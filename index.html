@@ -1,307 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Louay Mazkour | MAX 3D Mobile Portfolio</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Louay Mazkour | Portfolio</title>
 
 <style>
-:root{
---bg:#050505;
---text:#f5f0e8;
---glass:rgba(255,255,255,0.06);
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:-apple-system, sans-serif;
 }
-
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system;}
 
 body{
-background:var(--bg);
-overflow:hidden;
-color:var(--text);
+background:#050505;
+color:#f5f0e8;
+overflow-x:hidden;
 }
 
-/* ===== CINEMATIC BACKGROUND ENGINE ===== */
+/* BACKGROUND */
 .bg{
 position:fixed;
 inset:0;
 background:
-radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08), transparent 40%),
-radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05), transparent 40%),
-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03), transparent 60%);
-animation:move 10s infinite alternate ease-in-out;
+radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 40%),
+radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05), transparent 45%);
+z-index:-1;
 }
 
-@keyframes move{
-0%{transform:scale(1) rotate(0deg);}
-100%{transform:scale(1.2) rotate(10deg);}
-}
-
-/* ===== LIGHT FOLLOW ===== */
-.light{
+/* NAV */
+nav{
 position:fixed;
-width:250px;
-height:250px;
-background:radial-gradient(circle,rgba(255,255,255,0.15),transparent);
-pointer-events:none;
-mix-blend-mode:screen;
+top:0;
+width:100%;
+display:flex;
+justify-content:center;
+gap:12px;
+padding:12px;
+z-index:100;
+backdrop-filter:blur(10px);
 }
 
-/* ===== WRAPPER ===== */
-.wrapper{
-height:100vh;
-width:100vw;
-perspective:1600px;
+nav button{
+background:transparent;
+border:1px solid rgba(255,255,255,0.2);
+color:white;
+padding:8px 12px;
+border-radius:10px;
+cursor:pointer;
 }
 
-/* ===== SLIDES ===== */
-.slide{
-position:absolute;
-inset:0;
+/* SECTIONS */
+section{
+min-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+padding:60px 20px;
 text-align:center;
-padding:20px;
-
-opacity:0;
-transform:translateZ(-300px) scale(0.8);
-transition:1s cubic-bezier(.2,.8,.2,1);
-}
-
-.slide.active{
-opacity:1;
-transform:translateZ(0px) scale(1);
-}
-
-.slide.prev{
-transform:translateX(-50%) rotateY(45deg);
-opacity:0;
-}
-
-.slide.next{
-transform:translateX(50%) rotateY(-45deg);
-opacity:0;
-}
-
-/* ===== CARD ===== */
-.card{
-width:90%;
-height:62vh;
-border-radius:30px;
-overflow:hidden;
-position:relative;
-border:1px solid rgba(255,255,255,0.12);
-transform-style:preserve-3d;
-box-shadow:0 30px 80px rgba(0,0,0,0.6);
-}
-
-.card img, .card video{
-width:100%;
-height:100%;
-object-fit:cover;
-transform:scale(1.1);
-filter:contrast(1.1) saturate(1.1);
-}
-
-.glass{
-position:absolute;
-inset:0;
-background:var(--glass);
-backdrop-filter:blur(18px);
-}
-
-/* TEXT */
-.card h2{
-position:absolute;
-bottom:25px;
-left:25px;
-font-size:8vw;
-letter-spacing:-1px;
 }
 
 /* HERO */
 .hero h1{
-font-size:16vw;
-line-height:0.85;
+font-size:10vw;
+line-height:0.9;
 }
 
-/* BUTTON */
+/* CARD */
+.card{
+width:min(900px,95%);
+border-radius:25px;
+overflow:hidden;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+margin-top:20px;
+cursor:pointer;
+transition:0.4s;
+}
+
+.card img, .card video{
+width:100%;
+height:420px;
+object-fit:cover;
+display:block;
+transition:0.5s;
+}
+
+.card:hover img{
+transform:scale(1.05);
+filter:brightness(1.1);
+}
+
+.card h2{
+position:absolute;
+margin-top:-70px;
+margin-left:20px;
+font-size:40px;
+}
+
+/* TEXT AREA */
+.content{
+padding:20px;
+line-height:1.6;
+font-size:15px;
+}
+
+/* ABOUT EXPAND */
+.extra{
+max-height:0;
+overflow:hidden;
+transition:0.6s ease;
+}
+
+.card.open .extra{
+max-height:400px;
+}
+
+/* BUTTONS */
 .btn{
-padding:14px 22px;
-margin:10px;
-border-radius:14px;
+display:inline-block;
+margin:8px;
+padding:12px 16px;
+border-radius:12px;
 border:1px solid rgba(255,255,255,0.2);
+color:white;
 text-decoration:none;
-color:var(--text);
 }
 
-.btn:active{transform:scale(0.95);}
-
-/* DOTS */
-.dots{
-position:fixed;
-right:10px;
-top:50%;
-transform:translateY(-50%);
-display:flex;
-flex-direction:column;
-gap:8px;
+/* INPUT */
+input[type="file"]{
+margin-top:10px;
+color:white;
 }
 
-.dot{
-width:6px;height:6px;border-radius:50%;
-background:rgba(255,255,255,0.2);
-}
-
-.dot.active{background:white;}
 </style>
 </head>
 
 <body>
 
 <div class="bg"></div>
-<div class="light" id="light"></div>
 
-<div class="wrapper">
+<nav>
+<button onclick="go('about')">About</button>
+<button onclick="go('bar')">Bar</button>
+<button onclick="go('events')">Events</button>
+<button onclick="go('commercial')">Commercial</button>
+<button onclick="go('contact')">Contact</button>
+</nav>
 
 <!-- HERO -->
-<section class="slide active hero">
-<h1>LOUAY<br>MAZKOUR</h1>
+<section>
+<h1 class="hero">LOUAY<br>MAZKOUR</h1>
+<p>Bar Manager • Photographer • Creative Consultant</p>
 </section>
 
-<!-- ABOUT VIDEO -->
-<section class="slide">
-<div class="card">
-<video autoplay muted loop playsinline>
-<source src="https://www.w3schools.com/html/movie.mp4">
-</video>
-<div class="glass"></div>
+<!-- ABOUT -->
+<section id="about">
+<div class="card" onclick="toggle(this)">
+<img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1400">
+
 <h2>ABOUT</h2>
-</div>
-</section>
 
-<!-- EVENTS -->
-<section class="slide">
-<div class="card">
-<img src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200">
-<div class="glass"></div>
-<h2>EVENTS</h2>
+<div class="content">
+<p>
+Lebanese bar manager with 10+ years experience in hospitality and mixology, 
+plus 5 years as a professional photographer.
+</p>
+
+<div class="extra">
+<p>
+He also works in branding and creative direction through his project <b>digital.c.co</b>.<br><br>
+He builds bar concepts, trains staff, designs drink menus, manages openings, 
+and captures full visual identity for bars and brands.
+</p>
+</div>
+
+</div>
 </div>
 </section>
 
 <!-- BAR -->
-<section class="slide">
+<section id="bar">
 <div class="card">
-<img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1200">
-<div class="glass"></div>
-<h2>BAR</h2>
+<img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1400">
+<h2>BAR CONSULTANCY</h2>
+
+<div class="content">
+<p>
+High-end bar consultancy including concept creation, drink design, staff training, and full bar openings.
+</p>
+
+<div class="extra">
+<p>
+He creates signature drinks, builds bar workflow systems, trains teams, and produces drink photography & video content for marketing.
+</p>
+</div>
+
+</div>
 </div>
 </section>
 
-<!-- BRAND -->
-<section class="slide">
+<!-- EVENTS -->
+<section id="events">
 <div class="card">
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200">
-<div class="glass"></div>
-<h2>BRAND</h2>
+<img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1400">
+<h2>EVENTS</h2>
+
+<div class="content">
+<p>
+Full event coverage for weddings, nightlife, corporate, and private experiences.
+</p>
+
+<div class="extra">
+<p>
+Photography + creative direction for all types of events, capturing atmosphere, emotion, and storytelling moments.
+</p>
+</div>
+
+</div>
 </div>
 </section>
 
-<!-- MEDIA VIDEO -->
-<section class="slide">
+<!-- COMMERCIAL -->
+<section id="commercial">
 <div class="card">
-<video autoplay muted loop playsinline>
+<video controls>
 <source src="https://www.w3schools.com/html/mov_bbb.mp4">
 </video>
-<div class="glass"></div>
-<h2>MEDIA</h2>
+
+<h2>COMMERCIAL</h2>
+
+<div class="content">
+<p>
+Commercial shoots for brands, drinks, and lifestyle campaigns.
+</p>
+
+<div class="extra">
+<p>
+High-end visual storytelling for bars, products, and advertising campaigns.
+</p>
+</div>
+
+</div>
 </div>
 </section>
 
 <!-- CONTACT -->
-<section class="slide">
-<h2 style="font-size:12vw">CONTACT</h2>
+<section id="contact">
+<h2>CONTACT</h2>
 
+<div>
 <a class="btn" href="tel:+96171456396">CALL</a>
+<a class="btn" href="https://instagram.com/" target="_blank">INSTAGRAM</a>
 <a class="btn" href="cv.pdf" download>DOWNLOAD CV</a>
-
-</section>
-
 </div>
 
-<div class="dots"></div>
+<br>
+
+<p>Upload CV (optional)</p>
+<input type="file" accept=".pdf"/>
+</section>
 
 <script>
-let index=0;
-const slides=document.querySelectorAll(".slide");
-const dotsContainer=document.querySelector(".dots");
 
-/* dots */
-slides.forEach(()=>{
-const d=document.createElement("div");
-d.className="dot";
-dotsContainer.appendChild(d);
-});
-
-const dots=document.querySelectorAll(".dot");
-
-function update(){
-slides.forEach((s,i)=>{
-s.classList.remove("active","prev","next");
-
-if(i===index)s.classList.add("active");
-else if(i<index)s.classList.add("prev");
-else s.classList.add("next");
-});
-
-dots.forEach((d,i)=>{
-d.classList.toggle("active",i===index);
-});
+function go(id){
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
-/* SWIPE PHYSICS */
-let startY=0;
-
-document.addEventListener("touchstart",e=>{
-startY=e.touches[0].clientY;
-});
-
-document.addEventListener("touchend",e=>{
-let endY=e.changedTouches[0].clientY;
-
-let diff=startY-endY;
-
-if(Math.abs(diff)>40){
-index+=diff>0?1:-1;
-index=Math.max(0,Math.min(index,slides.length-1));
-
-gsap.to(".slide",{duration:0.8,ease:"power3.out"});
-update();
+function toggle(el){
+el.classList.toggle("open");
 }
-});
 
-/* LIGHT FOLLOW */
-const light=document.getElementById("light");
-
-document.addEventListener("touchmove",e=>{
-light.style.left=e.touches[0].clientX-120+"px";
-light.style.top=e.touches[0].clientY-120+"px";
-});
-
-/* GYRO 3D */
-window.addEventListener("deviceorientation",e=>{
-let x=e.gamma||0;
-let y=e.beta||0;
-
-document.querySelectorAll(".card").forEach(c=>{
-c.style.transform=`rotateY(${x/6}deg) rotateX(${y/8}deg)`;
-});
-});
-
-update();
 </script>
 
 </body>
