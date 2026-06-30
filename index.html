@@ -61,19 +61,21 @@ nav.scrolled{background:rgba(5,5,5,.9);backdrop-filter:blur(22px);-webkit-backdr
 .burger.open span:nth-child(3){transform:rotate(-45deg) translate(1px,1px);width:26px}
 
 /* ── MENU ── */
-#mOverlay{position:fixed;inset:0;z-index:9500;background:rgba(5,5,5,.97);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 10vw;opacity:0;pointer-events:none;transition:opacity .55s var(--ease)}
+#mOverlay{position:fixed;inset:0;z-index:9500;background:rgba(5,5,5,.97);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 10vw;opacity:0;pointer-events:none;transition:opacity .55s var(--ease);overflow-y:auto}
 #mOverlay.open{opacity:1;pointer-events:auto}
-.mlink{display:block;text-decoration:none;font-family:'Instrument Serif',serif;font-size:clamp(2.4rem,7vw,5.5rem);font-weight:400;line-height:1.18;color:rgba(240,237,232,.12);letter-spacing:-1px;opacity:0;transform:translateY(28px);transition:opacity .5s var(--ease),transform .5s var(--ease),color .25s,transform .3s;will-change:transform}
+.mlink{display:block;text-decoration:none;font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,5.2vw,4rem);font-weight:400;line-height:1.22;color:rgba(240,237,232,.12);letter-spacing:-1px;opacity:0;transform:translateY(28px);transition:opacity .5s var(--ease),transform .5s var(--ease),color .25s,transform .3s;will-change:transform}
 #mOverlay.open .mlink{opacity:1;transform:translateY(0)}
-#mOverlay.open .mlink:nth-child(1){transition-delay:.07s}
-#mOverlay.open .mlink:nth-child(2){transition-delay:.14s}
-#mOverlay.open .mlink:nth-child(3){transition-delay:.21s}
-#mOverlay.open .mlink:nth-child(4){transition-delay:.28s}
-#mOverlay.open .mlink:nth-child(5){transition-delay:.35s}
+#mOverlay.open .mlink:nth-child(1){transition-delay:.05s}
+#mOverlay.open .mlink:nth-child(2){transition-delay:.1s}
+#mOverlay.open .mlink:nth-child(3){transition-delay:.15s}
+#mOverlay.open .mlink:nth-child(4){transition-delay:.2s}
+#mOverlay.open .mlink:nth-child(5){transition-delay:.25s}
+#mOverlay.open .mlink:nth-child(6){transition-delay:.3s}
+#mOverlay.open .mlink:nth-child(7){transition-delay:.35s}
 .mlink:hover{color:var(--white);transform:translateX(12px)!important}
 .mlink.active{color:rgba(240,237,232,.55)}
-.mlink .mn{font-family:'Space Grotesk',sans-serif;font-size:.58rem;letter-spacing:2px;vertical-align:super;margin-right:8px;color:var(--gold);font-style:normal}
-.mmeta{margin-top:44px;font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--dim);opacity:0;transition:opacity .5s .38s}
+.mlink .mn{font-family:'Space Grotesk',sans-serif;font-size:.52rem;letter-spacing:2px;vertical-align:super;margin-right:8px;color:var(--gold);font-style:normal}
+.mmeta{margin-top:36px;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--dim);opacity:0;transition:opacity .5s .4s;padding-bottom:24px}
 #mOverlay.open .mmeta{opacity:1}
 
 /* ── HERO ── */
@@ -130,10 +132,6 @@ nav.scrolled{background:rgba(5,5,5,.9);backdrop-filter:blur(22px);-webkit-backdr
 .about-body p{font-size:.95rem;color:var(--dim);font-weight:300;line-height:1.88;margin-bottom:18px}
 .about-body p:first-of-type{font-family:'Instrument Serif',serif;font-size:1.28rem;color:rgba(240,237,232,.78);font-style:italic;line-height:1.62;margin-bottom:26px}
 .arule{width:28px;height:1px;background:var(--gold-dim);margin:24px 0}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
-.stat{border-top:1px solid var(--border-gold);padding-top:14px}
-.stat-n{font-family:'Instrument Serif',serif;font-size:2.6rem;line-height:1;margin-bottom:4px}
-.stat-l{font-size:.64rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
 
 /* ── OUR WORK 3D ── */
 .work-sect{padding:100px 44px;perspective:1500px;overflow:hidden;background:#070707}
@@ -166,46 +164,35 @@ nav.scrolled{background:rgba(5,5,5,.9);backdrop-filter:blur(22px);-webkit-backdr
 .hl.fill{color:var(--white);-webkit-text-stroke:none}
 .hl.gold{color:var(--gold);-webkit-text-stroke:none}
 
-/* ── VIDEO CARDS — UNIFIED SIZE ── */
-/* All video cards share same aspect-ratio & radius */
-.vsect{padding:112px 44px;position:relative}
+/* ── VIDEO CARDS — TRUE UNIFORM SIZE EVERYWHERE ── */
+.vsect{padding:96px 44px;position:relative}
 .vsect-inner{max-width:1160px;margin:0 auto}
 
-/* grid 3-col for commercial, 2-col for others — all same card height */
-.vgrid{display:grid;gap:18px;margin-bottom:52px}
-.vgrid.g3{grid-template-columns:repeat(3,1fr)}
-.vgrid.g2{grid-template-columns:repeat(2,1fr)}
-.vgrid.g5-wed{grid-template-columns:repeat(3,1fr)}
-/* wedding large card spans all 3 cols */
-.vcard{position:relative;overflow:hidden;border-radius:var(--card-radius);cursor:none;border:1px solid var(--border);background:#0c0c0c;aspect-ratio:16/10;transition:border-color .45s,box-shadow .45s,transform .5s var(--ease)}
+/* Every video grid uses the SAME card aspect ratio — 4 columns desktop so wedding(5)/commercial(3)/street(2)/fashion(2) all visually match */
+.vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.vcard{position:relative;overflow:hidden;border-radius:var(--card-radius);cursor:none;border:1px solid var(--border);background:#0c0c0c;aspect-ratio:3/4;transition:border-color .45s,box-shadow .45s,transform .5s var(--ease)}
 .vcard:hover{border-color:rgba(240,237,232,.16);box-shadow:0 28px 56px rgba(0,0,0,.52);transform:translateY(-4px)}
-.vcard.wed-main{grid-column:1/-1;aspect-ratio:21/9}
 .vcard-bg{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.5s var(--ease),filter .65s;filter:grayscale(22%) brightness(.65)}
 .vcard:hover .vcard-bg{transform:scale(1.07);filter:grayscale(0%) brightness(.55)}
-.vcard-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.97) 0%,rgba(5,5,5,.22) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px;transition:background .45s}
+.vcard-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.97) 0%,rgba(5,5,5,.22) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px;transition:background .45s}
 .vcard:hover .vcard-ov{background:linear-gradient(to top,rgba(5,5,5,.99) 0%,rgba(5,5,5,.48) 55%,rgba(5,5,5,.06) 100%)}
-.vcard-badge{position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:5px;background:rgba(5,5,5,.65);backdrop-filter:blur(10px);border:1px solid var(--border);padding:4px 11px;border-radius:30px;font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(240,237,232,.6)}
+.vcard-badge{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:5px;background:rgba(5,5,5,.65);backdrop-filter:blur(10px);border:1px solid var(--border);padding:4px 10px;border-radius:30px;font-size:.55rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(240,237,232,.6)}
 .vcard-badge.gold-b{border-color:var(--border-gold);color:var(--gold)}
 .blink{width:4px;height:4px;border-radius:50%;background:currentColor;animation:bk 2.2s infinite;flex-shrink:0}
 @keyframes bk{0%,100%{opacity:.28}50%{opacity:1}}
-.vcard-idx{font-size:.58rem;letter-spacing:3px;color:rgba(240,237,232,.3);margin-bottom:5px;text-transform:uppercase}
-.vcard-title{font-family:'Instrument Serif',serif;font-size:1.4rem;font-weight:400;line-height:1.15;margin-bottom:8px}
-.vcard.wed-main .vcard-title{font-size:clamp(1.6rem,3.5vw,2.4rem)}
-.vcard-desc{font-size:.82rem;color:var(--dim);font-weight:300;line-height:1.6;margin-bottom:16px;max-height:0;overflow:hidden;opacity:0;transition:max-height .5s var(--ease),opacity .38s}
-.vcard:hover .vcard-desc{max-height:80px;opacity:1}
-.vcard-play{display:flex;align-items:center;gap:9px;font-size:.63rem;letter-spacing:2px;text-transform:uppercase;color:var(--white);font-weight:500}
-.play-ring{width:32px;height:32px;border:1px solid rgba(240,237,232,.24);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .3s,border-color .3s,transform .4s var(--ease)}
+.vcard-idx{font-size:.55rem;letter-spacing:3px;color:rgba(240,237,232,.3);margin-bottom:5px;text-transform:uppercase}
+.vcard-title{font-family:'Instrument Serif',serif;font-size:1.18rem;font-weight:400;line-height:1.15;margin-bottom:8px}
+.vcard-desc{font-size:.78rem;color:var(--dim);font-weight:300;line-height:1.55;margin-bottom:14px;max-height:0;overflow:hidden;opacity:0;transition:max-height .5s var(--ease),opacity .38s}
+.vcard:hover .vcard-desc{max-height:100px;opacity:1}
+.vcard-play{display:flex;align-items:center;gap:9px;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--white);font-weight:500}
+.play-ring{width:30px;height:30px;border:1px solid rgba(240,237,232,.24);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .3s,border-color .3s,transform .4s var(--ease)}
 .vcard:hover .play-ring{background:var(--white);border-color:var(--white);transform:scale(1.14)}
 .play-ring svg{width:10px;fill:currentColor;margin-left:2px;transition:color .25s}
 .vcard:hover .play-ring svg{color:var(--black)}
-/* gold ring for wedding main */
 .vcard.wed-main .play-ring{border-color:rgba(212,175,95,.35)}
 .vcard.wed-main:hover .play-ring{background:var(--gold);border-color:var(--gold)}
 .vcard.wed-main:hover .play-ring svg{color:var(--black)}
-
-/* sub-label for section types */
-.sub-eyebrow{font-size:.58rem;letter-spacing:4px;text-transform:uppercase;color:rgba(240,237,232,.35);margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.sub-eyebrow::before{content:'';width:14px;height:1px;background:rgba(240,237,232,.25);display:block}
+.vcard.wed-main .vcard-badge{border-color:var(--border-gold);color:var(--gold)}
 
 /* ── SPHERE ── */
 .sphere-sec{padding:110px 44px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:380px}
@@ -230,6 +217,7 @@ nav.scrolled{background:rgba(5,5,5,.9);backdrop-filter:blur(22px);-webkit-backdr
 .chips{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px}
 .chip{display:flex;align-items:center;gap:9px;padding:15px 26px;border-radius:50px;border:1px solid var(--border);background:rgba(240,237,232,.018);text-decoration:none;color:var(--dim);font-size:.83rem;font-weight:400;transition:transform .45s var(--ease),background .3s,border-color .3s,color .28s,box-shadow .4s}
 .chip:hover{transform:translateY(-5px);background:rgba(212,175,95,.06);border-color:var(--border-gold);color:var(--gold);box-shadow:0 14px 36px rgba(212,175,95,.07)}
+.chip svg{width:16px;height:16px;flex-shrink:0}
 
 /* ── FOOTER ── */
 footer{padding:28px 44px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim)}
@@ -261,46 +249,56 @@ footer{padding:28px 44px;border-top:1px solid var(--border);display:flex;justify
 .divider-inner span{font-family:'Instrument Serif',serif;font-size:.95rem;font-style:italic;color:var(--dim);padding:0 28px;white-space:nowrap;letter-spacing:2px}
 .divider-inner span.g{color:var(--gold);opacity:.55;font-style:normal}
 
-/* ══ MOBILE ══ */
+/* ══ MOBILE / RESPONSIVE — professional tightening ══ */
 @media(max-width:1024px){
   .c3row{grid-template-columns:repeat(2,1fr)}
-  .pgrid{grid-template-columns:repeat(2,1fr)}
-  .vgrid.g3{grid-template-columns:1fr 1fr}
-  .vgrid.g5-wed{grid-template-columns:1fr 1fr}
-  .vcard.wed-main{grid-column:1/-1}
+  .pgrid{grid-template-columns:repeat(3,1fr);gap:12px}
+  .vgrid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
   body{cursor:auto}
   #cur,#cur2{display:none}
   nav{padding:0 18px;height:58px}
-  .sect,.vsect{padding:68px 18px}
-  .work-sect{padding:68px 18px}
-  .hero-content{padding:0 18px 52px}
+  .sect,.vsect{padding:60px 18px}
+  .work-sect{padding:60px 18px}
+  .hero-content{padding:0 18px 48px}
   .hero h1{letter-spacing:-1px}
   .hero-scroll{right:18px;bottom:18px}
-  .about-grid{grid-template-columns:1fr;gap:36px}
-  .c3row{grid-template-columns:1fr 1fr;gap:12px}
-  .c3d{animation:none!important}
-  .vgrid.g3,.vgrid.g2,.vgrid.g5-wed{grid-template-columns:1fr}
-  .vcard.wed-main{grid-column:auto;aspect-ratio:16/10}
-  .vcard{aspect-ratio:16/9}
-  .vcard-desc{max-height:56px!important;opacity:1!important}
-  .pgrid{grid-template-columns:1fr 1fr;gap:12px}
-  .contact-sec{padding:80px 18px 120px}
+  .about-grid{grid-template-columns:1fr;gap:32px}
+  .c3row{grid-template-columns:1fr 1fr;gap:10px}
+  .c3d{animation:none!important;transform:none!important}
+  .c3d-in{box-shadow:0 16px 32px rgba(0,0,0,.5)}
+
+  /* video grids: 2-per-row on mobile, compact uniform cards */
+  .vgrid{grid-template-columns:1fr 1fr;gap:10px}
+  .vcard{aspect-ratio:3/4;border-radius:8px}
+  .vcard-ov{padding:12px}
+  .vcard-idx{font-size:.5rem;letter-spacing:2px;margin-bottom:3px}
+  .vcard-title{font-size:.92rem;line-height:1.1;margin-bottom:0}
+  .vcard-desc{display:none}
+  .vcard-play{display:none}
+  .vcard-badge{padding:3px 8px;font-size:.48rem;top:8px;left:8px}
+  .play-ring{display:none}
+
+  /* photo grid — smaller tiles, 3 per row, tighter gaps */
+  .pgrid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .pi{border-radius:7px}
+  .ptag{font-size:.5rem;padding:3px 8px;bottom:7px;left:7px;letter-spacing:1px}
+
+  .contact-sec{padding:72px 18px 110px}
   .chips{flex-direction:column;align-items:center}
   .chip{width:100%;max-width:320px;justify-content:center}
   footer{flex-direction:column;gap:10px;text-align:center;padding:20px}
   #mOverlay{padding:0 7vw}
-  .mlink{font-size:clamp(2rem,9vw,3.6rem)}
-  .stats{grid-template-columns:repeat(3,1fr);gap:10px}
-  .stat-n{font-size:2rem}
-  .horiz{height:50vh}
-  .sphere-sec{padding:72px 18px}
+  .mlink{font-size:clamp(1.5rem,8vw,2.6rem)}
+  .horiz{height:46vh}
+  .sphere-sec{padding:64px 18px}
+  .sub-eyebrow{margin-top:36px!important}
 }
 @media(max-width:480px){
-  .c3row{grid-template-columns:1fr}
-  .pgrid{grid-template-columns:1fr}
-  .vgrid.g3,.vgrid.g2,.vgrid.g5-wed{grid-template-columns:1fr}
+  .c3row{grid-template-columns:1fr 1fr}
+  .pgrid{grid-template-columns:repeat(3,1fr)}
+  .vgrid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -326,13 +324,15 @@ footer{padding:28px 44px;border-top:1px solid var(--border);display:flex;justify
 <div id="mOverlay">
   <a href="#about"       class="mlink" data-close><span class="mn">01</span>About</a>
   <a href="#wedding"     class="mlink" data-close><span class="mn">02</span>Wedding</a>
-  <a href="#cinema"      class="mlink" data-close><span class="mn">03</span>Cinema</a>
-  <a href="#photography" class="mlink" data-close><span class="mn">04</span>Photography</a>
-  <a href="#contact"     class="mlink" data-close><span class="mn">05</span>Contact</a>
+  <a href="#commercial"  class="mlink" data-close><span class="mn">03</span>Commercial</a>
+  <a href="#street"      class="mlink" data-close><span class="mn">04</span>Street</a>
+  <a href="#fashion"     class="mlink" data-close><span class="mn">05</span>Fashion</a>
+  <a href="#photography" class="mlink" data-close><span class="mn">06</span>Photography</a>
+  <a href="#contact"     class="mlink" data-close><span class="mn">07</span>Contact</a>
   <div class="mmeta">Visual Storyteller &middot; Beirut, Lebanon</div>
 </div>
 
-<!-- HERO — cinematic/photography, not wedding -->
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg" id="heroBg">
     <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?q=80&w=3600&auto=format&fit=crop" alt="Photography">
@@ -379,8 +379,6 @@ footer{padding:28px 44px;border-top:1px solid var(--border);display:flex;justify
       <p class="sr d2">Hi, I'm Louay Mazkour — photographer and commercial videographer dedicated to capturing life, brands, and spaces in their truest light.</p>
       <p class="sr d3">The best visuals aren't just planned — they are felt. My work blends clean compositions with dramatic, natural lighting to create imagery that leaves a lasting impression.</p>
       <p class="sr d4">Whether it's a wedding film, editorial shoot, or brand campaign — I tell an authentic story that elevates every project.</p>
-      <div class="stats">
-      </div>
     </div>
   </div>
 </section>
@@ -411,17 +409,16 @@ footer{padding:28px 44px;border-top:1px solid var(--border);display:flex;justify
   </div>
 </div>
 
-<!-- ══ WEDDING ══ -->
+<!-- ══ 02 WEDDING ══ -->
 <section class="vsect" id="wedding" data-section="Wedding">
   <div class="vsect-inner">
     <div class="eyebrow sr">02 — Wedding Cinema</div>
     <h2 class="stitle sr d1">Every love story<br><em>deserves a film</em></h2>
 
-    <div class="vgrid g5-wed">
-      <!-- Main large card -->
-      <div class="vcard wed-main sr-s" data-vid="https://docs.google.com/uc?export=download&id=1wDBDrzzMzg5tLMKtNh6br6iRqnDizD5M">
+    <div class="vgrid">
+      <div class="vcard wed-main sr-s" data-vid="https://drive.google.com/uc?export=download&id=1wDBDrzzMzg5tLMKtNh6br6iRqnDizD5M">
         <div class="vcard-badge gold-b"><div class="blink"></div>Wedding Film</div>
-        <img class="vcard-bg" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1200&auto=format&fit=cover" alt="">
+        <img class="vcard-bg" src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=900&auto=format&fit=crop" alt="">
         <div class="vcard-ov">
           <div class="vcard-idx">01 / Wedding</div>
           <div class="vcard-title">A Day to Remember</div>
@@ -429,7 +426,6 @@ footer{padding:28px 44px;border-top:1px solid var(--border);display:flex;justify
           <div class="vcard-play"><div class="play-ring"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>Watch Film</div>
         </div>
       </div>
-      <!-- 4 sub cards -->
       <div class="vcard sr d1" data-vid="https://drive.google.com/uc?export=download&id=1lesUsjOI-Hf4FP5VTfWT81JytvT6ZDR2">
         <div class="vcard-badge"><div class="blink"></div>Play</div>
         <img class="vcard-bg" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=80" alt="">
@@ -458,15 +454,12 @@ footer{padding:28px 44px;border-top:1px solid var(--border);display:flex;justify
   <div class="divider-inner"><span>Commercial</span><span class="g">·</span><span>Brand Films</span><span class="g">·</span><span>Product</span><span class="g">·</span><span>Lifestyle</span><span class="g">·</span><span>Commercial</span><span class="g">·</span><span>Brand Films</span><span class="g">·</span><span>Product</span><span class="g">·</span><span>Lifestyle</span><span class="g">·</span><span>Commercial</span><span class="g">·</span><span>Brand Films</span><span class="g">·</span></div>
 </div>
 
-<!-- ══ CINEMA ══ -->
-<section class="vsect" id="cinema" data-section="Cinema">
+<!-- ══ 03 COMMERCIAL ══ -->
+<section class="vsect" id="commercial" data-section="Commercial">
   <div class="vsect-inner">
-    <div class="eyebrow sr">03 — Cinema</div>
-    <h2 class="stitle sr d1">Film<br><em>Work</em></h2>
-
-    <!-- COMMERCIAL -->
-    <div class="sub-eyebrow sr">Commercial Production</div>
-    <div class="vgrid g3 sr">
+    <div class="eyebrow sr">03 — Commercial Production</div>
+    <h2 class="stitle sr d1">Brand Films<br><em>that perform</em></h2>
+    <div class="vgrid sr">
       <div class="vcard" data-vid="https://drive.google.com/uc?export=download&id=1r082A30MuU__1nxpmpGRXn2RlH3xrpX5">
         <div class="vcard-badge"><div class="blink"></div>Play</div>
         <img class="vcard-bg" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=700&q=80" alt="">
@@ -483,10 +476,15 @@ footer{padding:28px 44px;border-top:1px solid var(--border);display:flex;justify
         <div class="vcard-ov"><div class="vcard-idx">03 / Commercial</div><div class="vcard-title">Brand Production III</div><div class="vcard-desc">High-energy pacing and storytelling structured for modern brand deployment.</div><div class="vcard-play"><div class="play-ring"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>Play Reel</div></div>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- STREET -->
-    <div class="sub-eyebrow sr" style="margin-top:52px">Street &amp; Narrative</div>
-    <div class="vgrid g2 sr">
+<!-- ══ 04 STREET ══ -->
+<section class="vsect" id="street" data-section="Street">
+  <div class="vsect-inner">
+    <div class="eyebrow sr">04 — Street &amp; Narrative</div>
+    <h2 class="stitle sr d1">Stories told<br><em>in motion</em></h2>
+    <div class="vgrid sr">
       <div class="vcard" data-vid="https://drive.google.com/uc?export=download&id=1yqqnwfeUUp7iodJdp5OZx82fkR0vBMEK">
         <div class="vcard-badge"><div class="blink"></div>Play</div>
         <img class="vcard-bg" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=700&q=80" alt="">
@@ -498,10 +496,15 @@ footer{padding:28px 44px;border-top:1px solid var(--border);display:flex;justify
         <div class="vcard-ov"><div class="vcard-idx">02 / Street</div><div class="vcard-title">Narrative Cinema II</div><div class="vcard-desc">High-contrast framing, neon highlights, and fast tracking across urban landscapes.</div><div class="vcard-play"><div class="play-ring"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>Play Reel</div></div>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- FASHION -->
-    <div class="sub-eyebrow sr" style="margin-top:52px">Fashion &amp; Model</div>
-    <div class="vgrid g2 sr">
+<!-- ══ 05 FASHION ══ -->
+<section class="vsect" id="fashion" data-section="Fashion">
+  <div class="vsect-inner">
+    <div class="eyebrow sr">05 — Fashion &amp; Model</div>
+    <h2 class="stitle sr d1">Editorial<br><em>in frame</em></h2>
+    <div class="vgrid sr">
       <div class="vcard" data-vid="https://drive.google.com/uc?export=download&id=1LBBeYQNLk8bPmQMuaEtrSzuJLflYqZrI">
         <div class="vcard-badge"><div class="blink"></div>Play</div>
         <img class="vcard-bg" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=700&q=80" alt="">
@@ -533,10 +536,10 @@ footer{padding:28px 44px;border-top:1px solid var(--border);display:flex;justify
   </div>
 </div>
 
-<!-- ══ PHOTOGRAPHY ══ -->
+<!-- ══ 06 PHOTOGRAPHY ══ -->
 <section class="sect" id="photography" data-section="Photography">
-  <div style="max-width:1160px;margin:0 auto">
-    <div class="eyebrow sr">04 — Photography</div>
+  <div style="max-width:1000px;margin:0 auto">
+    <div class="eyebrow sr">06 — Photography</div>
     <h2 class="stitle sr d1">Fine Art<br><em>Series</em></h2>
     <div class="pgrid">
       <div class="pi sr"><img src="https://lh3.googleusercontent.com/d/1ekAeKmO8h61iQx2dldXakuRGR_LKLN_j" alt="Ink Identity"><div class="ptag">Ink & Identity</div></div>
@@ -544,12 +547,11 @@ footer{padding:28px 44px;border-top:1px solid var(--border);display:flex;justify
       <div class="pi sr d2"><img src="https://lh3.googleusercontent.com/d/1fc5X2xOrq-ZQX1X87j3uitiOXGL6e6Zz" alt="Pure Aesthetic"><div class="ptag">Pure Aesthetic</div></div>
       <div class="pi sr d3"><img src="https://lh3.googleusercontent.com/d/1V4P3vIYjpVpQI4N2XqP3o44RTLxAUdcI" alt="Coffee Culture"><div class="ptag">Coffee Culture</div></div>
       <div class="pi sr d4"><img src="https://lh3.googleusercontent.com/d/1sV6VHsX6kNMUM3yu-2jNi38HkWz2LlNv" alt="Golden Hour"><div class="ptag">Golden Hour</div></div>
-      <div class="pi sr d5"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=700&q=80" alt="Portrait"><div class="ptag">Portrait</div></div>
     </div>
   </div>
 </section>
 
-<!-- ══ CONTACT ══ -->
+<!-- ══ 07 CONTACT ══ -->
 <section class="contact-sec" id="contact" data-section="Contact">
   <div class="eyebrow sr" style="justify-content:center;margin-bottom:16px">Get In Touch</div>
   <h2 class="contact-big sr d1">Let's create<br><em>together.</em></h2>
@@ -557,7 +559,10 @@ footer{padding:28px 44px;border-top:1px solid var(--border);display:flex;justify
   <div class="chips">
     <a href="tel:+96171456396" class="chip sr d2">📞 +961 71 456 396</a>
     <a href="mailto:louaymazkour@outlook.com" class="chip sr d3">✉️ louaymazkour@outlook.com</a>
-    <a href="https://www.instagram.com/louaymazkour?igsh=dDgxNWI6YWU5ZHdx" target="_blank" class="chip sr d4">📸 @louaymazkour</a>
+    <a href="https://www.instagram.com/louaymazkour?igsh=dDgxNWI6YWU5ZHdx" target="_blank" class="chip sr d4">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      @louaymazkour
+    </a>
   </div>
 </section>
 
@@ -623,14 +628,12 @@ function updatePill(){
   if(window.scrollY<80){pill.classList.remove('show');last=''}
 }
 
-/* HERO PARALLAX — image reveals fully as u scroll */
+/* HERO PARALLAX */
 var heroBg=document.getElementById('heroBg');
 function updateHero(){
   var r=document.getElementById('hero').getBoundingClientRect();
   var p=Math.max(0,Math.min(1,-r.top/window.innerHeight));
-  /* parallax drift */
   heroBg.style.transform='translateY('+p*14+'%)';
-  /* brightness grows from .38 → .62 as you scroll, making it "fully reveal" */
   var br=(.38+p*.24).toFixed(3);
   heroBg.querySelector('img').style.filter='brightness('+br+')';
 }
@@ -674,7 +677,7 @@ checkReveal();
   window.addEventListener('resize',resize);resize();draw();
 })();
 
-/* VIDEO MODAL — native <video> tag, full quality, no YouTube, no ads */
+/* VIDEO MODAL */
 var vModal=document.getElementById('vModal'),vPlayer=document.getElementById('vPlayer');
 document.querySelectorAll('[data-vid]').forEach(function(el){
   el.addEventListener('click',function(){
