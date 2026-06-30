@@ -276,9 +276,9 @@ footer{padding:28px 44px;border-top:1px solid var(--border);display:flex;justify
   .vcard-idx{font-size:.5rem;letter-spacing:2px;margin-bottom:3px}
   .vcard-title{font-size:.92rem;line-height:1.1;margin-bottom:0}
   .vcard-desc{display:none}
-  .vcard-play{display:none}
+  .vcard-play{position:absolute;bottom:10px;right:10px;display:block;font-size:0}
   .vcard-badge{padding:3px 8px;font-size:.48rem;top:8px;left:8px}
-  .play-ring{display:none}
+  .play-ring{display:flex;width:30px;height:30px;background:rgba(5,5,5,.55);border-color:rgba(240,237,232,.3)}
 
   /* photo grid — smaller tiles, 3 per row, tighter gaps */
   .pgrid{grid-template-columns:repeat(3,1fr);gap:8px}
@@ -695,6 +695,4 @@ function closeV(){vModal.classList.remove('on');vPlayer.pause();vPlayer.src='';d
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeV()});
 </script>
 </body>
-</html>  
-
-
+</html>
